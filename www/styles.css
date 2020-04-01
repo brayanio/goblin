@@ -1,0 +1,17 @@
+@import url("./styles/customize.css");
+@import url("./styles/gbln.css");
+@import url("./styles/gl.css");
+@import url("./styles/layout.css");
+
+*{
+  font-family: sans-serif;
+}
+
+html{
+  background-color: hsl(180, 10%, 30%);
+}
+
+hr{
+  border: 2px solid #ffffff40;
+  border-radius: 6px;
+}

@@ -1,0 +1,18 @@
+/* quantity */
+
+.gbln-quantity {
+  margin: 6px 0;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.gbln-quantity span{
+  padding: 0 6px;
+  display: inline-block;
+  min-width: 100px;
+}
+.gbln-quantity strong{
+  padding: 0 6px;
+}

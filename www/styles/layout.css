@@ -1,0 +1,96 @@
+/* ColGrid */
+
+@media screen and (min-width: 800px){
+  .d2{
+    width: 20%;
+    box-sizing: border-box;
+  }
+
+  .d3{
+    width: 30%;
+    box-sizing: border-box;
+  }
+
+  .d4{
+    width: 30%;
+    box-sizing: border-box;
+  }
+
+  .d6{
+    width: 70%;
+    box-sizing: border-box;
+  }
+
+  .d7{
+    width: 70%;
+    box-sizing: border-box;
+  }
+
+  .d8{
+    width: 80%;
+    box-sizing: border-box;
+  }
+
+  .d10{
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .drow{
+    display: flex;
+  }
+}
+
+/* IconBtn */
+
+.icon-btn{
+}
+
+.icon-btn i{
+}
+
+.icon-btn:hover i{
+}
+
+.icon-btn:hover{
+}
+
+/* LinkBtn */
+
+.link{
+}
+
+.link:active, .link:focus, .link.active{
+}
+
+.links .link{
+}
+
+/* Modal */
+
+.modal-bg{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(145deg, black, transparent);
+}
+
+.modal{
+  position: relative;
+  left: 10%;
+  width: 80%;
+  top: 5%;
+  background-color: #320130;
+  overflow-y: auto;
+  border-radius: 2px;
+}
+
+/* nav */
+
+nav{
+  display: flex;
+  flex-direction: flex-end;
+  margin: 8px 0;
+}
