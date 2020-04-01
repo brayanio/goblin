@@ -6,10 +6,8 @@ import CustomHeroPipe from '../../pipes/custom-hero.js'
 const Hero = CustomHeroPipe.Hero
 export default () => Glcss.Card( //name, race, fn
   Glcss.CardHeader('Create Character'),
-  Layout.Id('form', 'form', ['gl-card'],
+  Layout.Container('form', ['gl-card'],
     Glcss.FormInput('Name', {}, Hero.name),
-    Glcss.FormSelect('Race', r => Hero.race.change(Data.Race[r]), Data.Races.map(r => 
-      Glcss.FormOption(r.name)
-    ))
+    Glcss.FormSelect('Race', Data.RaceNames, r => Hero.race.change(Data.Race[r]))
   )
 )

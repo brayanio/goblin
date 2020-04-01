@@ -1,21 +1,20 @@
 import nggt from '../../nggt.js'
 import Layout from '../layout/module.js'
+import CustomHeroPipe from '../../pipes/custom-hero.js'
 
-export default (label, obj, totalObj) => {
-  obj = obj || nggt.dataObj(0)
+const click = (obj, inc) => 
+  (inc === 1 && CustomHeroPipe.Stats.total.val() > 0) || (inc === -1 && obj.val() > 0)
+  ? obj.change(obj.val() + inc) : null
+const cap = s => s.substr(0, 1).toUpperCase() + s.substr(1)
 
-  const click = inc => {
-    const val = obj.val(), total = totalObj.val()
-    if((inc === 1 && total > 0) || (inc === -1 && val > 0)) 
-      obj.change(obj.val() + inc)
-  }
-
+export default (label) => {
+  const obj = CustomHeroPipe.Stats[label]
   return Layout.Container('div', ['gbln-quantity'], 
-    Layout.El('span', label),
+    Layout.El('span', cap(label)),
     Layout.DataObj(obj, val => 
       Layout.Bold(val)
     ),
-    Layout.Btn(['gl-btn_icon'], '+', () => click(1)),
-    Layout.Btn(['gl-btn_icon'], '-', () => click(-1))
+    Layout.Btn(['gl-btn_icon'], '+', () => click(obj, 1)),
+    Layout.Btn(['gl-btn_icon'], '-', () => click(obj, -1))
   )
 }

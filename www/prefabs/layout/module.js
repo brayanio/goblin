@@ -6,16 +6,14 @@ import ColGrid from './col-grid.js'
 import Container from './container.js'
 import DataObj from './data-obj.js'
 import El from './el.js'
-import IconBtn from './icon-btn.js'
 import Icon from './icon.js'
 import Id from './id.js'
+import If from './if.js'
 import Join from './join.js'
-import LinkBtn from './link-btn.js'
-import Modal from './modal.js'
-import Nav from './nav.js'
+import List from './list.js'
+import Map from './map.js'
 import Tab from './tab.js'
 import Tabs from './tabs.js'
-import UL from './ul.js'
 
 export default {
   Auto,
@@ -26,14 +24,12 @@ export default {
   Container,
   DataObj,
   El,
-  IconBtn,
   Icon,
   Id,
+  If,
   Join,
-  LinkBtn,
-  Modal,
-  Nav,
+  List,
+  Map,
   Tab,
-  Tabs,
-  UL
+  Tabs
 }

@@ -7,7 +7,7 @@ export default obj => {
     fn(obj)
     return {cleanup: () => cleanup(fn)}
   }
-  const stop = () => subs = [];
+  const clear = () => subs = [];
   const val = () => obj;
   const update = () => subs.forEach(fn => fn(obj))
   
@@ -17,8 +17,7 @@ export default obj => {
     return obj;
   }
 
-  //new 04/01/2020
   const onevent = e => () => change(e)
 
-  return {change, onChange, update, val, stop, cleanup, onevent}
+  return {change, onChange, update, val, clear, cleanup, onevent}
 }

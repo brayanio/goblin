@@ -1,7 +1,12 @@
 /* race-desc */
 
 .race-desc{
-  height: 200px;
-  overflow-y: auto;
   padding: 6px;
+}
+
+@media screen and (max-width: 800px){
+  .race-desc{
+    height: 200px;
+    overflow-y: auto;
+  }
 }

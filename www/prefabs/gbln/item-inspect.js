@@ -5,6 +5,5 @@ import CustomHeroPipe from '../../pipes/custom-hero.js'
 
 const Equipment = CustomHeroPipe.Equipment
 export default () => Glcss.Card(
-  Glcss.CardHeader('Equipment'),
-  Layout.List('ul', 'Weapon', 'Armor', 'Mark', 'Prop')
+  Glcss.CardHeader('Item Name')
 )

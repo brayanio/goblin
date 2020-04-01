@@ -25,9 +25,25 @@
   --aw15: #ffffff90;
 }
 
+.gl-scene_mobile, .gl-scene_mobile_pro{
+  transition: .3s;
+}
+
 @media screen and (min-width: 1000px){
   .gl-scene_mobile{
+    padding: 0 5%;
+  }
+  .gl-scene_mobile_pro{
     padding: 0 10%;
+  }
+}
+
+@media screen and (min-width: 1400px){
+  .gl-scene_mobile{
+    padding: 0 10%;
+  }
+  .gl-scene_mobile_pro{
+    padding: 0 20%;
   }
 }
 

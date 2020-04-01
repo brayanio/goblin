@@ -16,19 +16,15 @@ const StorePanel = (slot, tags) => {
   return ''
 }
 
-const mapItemSlot = fn => Data.ItemSlots.map(slot => fn(slot)),
-  tabs = nggt.dataObj(Data.ItemSlots[0])
-
+const tabs = nggt.dataObj(Data.ItemSlots[0])
 export default () => Glcss.Panel(
   Glcss.PanelHeader(
     Layout.Container('div', ['space-between'],
       'Store',
-      Glcss.FormSelect(null, tab => tabs.change(tab), ...mapItemSlot(slot =>
-        Glcss.FormOption(slot)
-      ))
+      Glcss.FormSelect(null, Data.ItemSlots, tab => tabs.change(tab))
     )
   ),
-  Layout.Tabs(tabs, ...mapItemSlot(slot => 
+  Layout.Tabs(tabs, Layout.Map(Data.ItemSlots, slot => 
     Layout.Tab(slot,
       Layout.DataObj(CHPipe.Hero.race, race => 
         StorePanel(slot, race.tags)

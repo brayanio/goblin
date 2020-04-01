@@ -1,11 +1,11 @@
 import nggt from '../../nggt.js'
 import Layout from '../layout/module.js'
 
-export default (label, onChange, ...options) => nggt.create({
+export default (label, options, onChange) => nggt.create({
   template: Layout.Container('label', ['gl-label'], 
-    label === null ? '' : Layout.El('span', label),
+    Layout.If(() => label, Layout.El('span', label)),
     Layout.Id('select', 'select', [],
-      ...options
+      Layout.Map(options, o => Layout.El('option', o))
     )
   ),
   run: ui => ui.select.addEventListener('change', e => onChange(e.target.value))
