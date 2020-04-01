@@ -1,4 +1,11 @@
 :root{
+/* media */
+  --xs: 800px;
+  --sm: 1000px;
+  --md: 1400px;
+  --lg: 1800px;
+
+/* colors */
   --card-bg: #ffffff60;
   --panel-bg: hsla(180, 10%, 30%, 60%);
   /* alpha black */
@@ -31,19 +38,27 @@
 
 @media screen and (min-width: 1000px){
   .gl-scene_mobile{
-    padding: 0 5%;
+    padding: 2.5% 5%;
+    overflow-y: auto;
+    max-height: 95%;
   }
   .gl-scene_mobile_pro{
-    padding: 0 10%;
+    padding: 2.5% 10%;
+    overflow-y: auto;
+    max-height: 95%;
   }
 }
 
 @media screen and (min-width: 1400px){
   .gl-scene_mobile{
-    padding: 0 10%;
+    padding: 2.5% 10%;
+    overflow-y: auto;
+    max-height: 95%;
   }
   .gl-scene_mobile_pro{
-    padding: 0 20%;
+    padding: 5% 20%;
+    overflow-y: auto;
+    max-height: 90%;
   }
 }
 
@@ -121,7 +136,6 @@
   border-radius: 6px;
   border: none;
   box-shadow: 3px 5px 5px var(--aw3), 3px -5px -5px var(--aw1);
-  min-width: 300px;
   padding: 6px;
   font-weight: bold;
   font-size: 1em;
@@ -134,7 +148,6 @@
   border-radius: 6px;
   border: none;
   box-shadow: 3px 5px 5px var(--aw3), 3px -5px -5px var(--aw1);
-  min-width: 300px;
   padding: 6px;
   font-weight: bold;
   font-size: 1em;
@@ -142,10 +155,22 @@
   background-color: var(--ab5);
 }
 
-@media screen and (max-width: 1000px){ /* mobile */
+
+@media screen and (min-width: 800px){ /* desktop */
   .gl-label{
-    width: 60%;
+    max-width: 260px;
   }
+  
+  .gl-label input{
+    min-width: 260px;
+  }
+
+  .gl-label select{
+    min-width: 260px;
+  }
+}
+
+@media screen and (max-width: 1000px){ /* mobile */
   
   .gl-label input{  
     width: 100%;

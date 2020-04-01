@@ -1,3 +1,5 @@
+import races from './races.js'
+
 let exportObj
 
 // consts
@@ -15,14 +17,29 @@ let Items = {},
   ItemsByTag = {},
   ItemsBySlot = {},
   ItemsBySlotByCategory = {},
-  ItemsBySlotByTag = {}
+  ItemsBySlotByTag = {},
+  ItemsBySlotByCategoryByTag = {}
 
 const checkExcluded = (item, tags) => tags.find(t => item.type.excludedTags[t]) === undefined
+const filterExcluded = (items, tags) => items.filter(i => checkExcluded(i, tags))
+const filterResults = (obj, tags) => {
+  let res = {}, ar
+  Object.keys(obj).forEach(key => {
+    ar = filterExcluded(obj[key], tags)
+    if(ar.length > 0)
+      res[key] = ar
+  })
+  return res
+}
 
 const getItemsBySlotByTags = (slot, tags) => tags.map(tag => {
   if(!ItemsBySlotByTag[slot] || !ItemsBySlotByTag[slot][tag]) return null
-  return ItemsBySlotByTag[slot][tag].filter(item => checkExcluded(item, tags))
+  return filterExcluded(ItemsBySlotByTag[slot][tag], tags)
 }).filter(e=>e!==null)
+
+const getItemsByCategoryFromSlotAndTags = (slot, tags) => {
+  return filterResults(ItemsBySlotByCategory[slot], tags)
+}
 
 // export
 exportObj = {
@@ -32,13 +49,14 @@ exportObj = {
   ItemCategory, // ItemCategory.Elven
 
   Items, // Items.DualBlades
-  ItemsByCategory, // ItemsByCategory.Elven
   ItemsByTag, // ItemsByTag.Humanoid
+  ItemsByCategory, // ItemsByCategory.Elven
   ItemsBySlot,  // ItemsBySlot.Weapon
   ItemsBySlotByCategory, // ItemsBySlotByCategory.Weapon.Elven
   ItemsBySlotByTag, // ItemsBySlotByTag.Weapon.Humanoid
 
-  getItemsBySlotByTags
+  getItemsBySlotByTags,
+  getItemsByCategoryFromSlotAndTags
 }
 
 const registerItem = obj => {
@@ -54,6 +72,7 @@ const registerItem = obj => {
     ItemsBySlotByCategory[slot][category] = [obj]
   else
     ItemsBySlotByCategory[slot][category].push(obj)
+
   
   tags.forEach(tag => {
     ItemsByTag[tag] ? ItemsByTag[tag].push(obj) : ItemsByTag[tag] = [obj]
@@ -64,7 +83,6 @@ const registerItem = obj => {
     else
       ItemsBySlotByTag[slot][tag].push(obj)
   })
-  
 }
 
 // item fn
@@ -94,7 +112,7 @@ const defense = (ac) => {
 }
 
 // content utils
-const weapon = (name, tags, damageStat) => {
+const weapon = (name, damageStat, ...tags) => {
   return { slot: ItemSlot.Weapon, name, tags, ...combat(damageStat) }
 }
 const armor = (name, tags, ac) => {
@@ -109,30 +127,33 @@ const prop = (name, tags) => {
 const category = (category, ...items) => 
   items.map(i => item(i.name, type(i.slot, category, i.tags), i.combat, i.defense))
 
+const Tag = races.RaceTag
+const Excl = (...a) => a.map(s => '!' + s)
 // content
 category( ItemCategory.Elven, 
-  weapon('Dual Blades', ['Humanoid', '!Devilkin', '!Creature'], 'dexterity')
+  weapon('Dual Blades', 'dexterity', Tag.Humanoid, ...Excl(Tag.Devilkin, Tag.Creature)),
+  weapon('Temptress', 'charisma', Tag.Humanoid, ...Excl(Tag.Divine))
 )
 category( ItemCategory.Dwarven,
-  weapon('Crossbow', ['Humanoid', '!Devilkin', '!Creature'], 'dexterity')
+  weapon('Crossbow', 'dexterity', Tag.Humanoid, ...Excl(Tag.Devilkin, Tag.Creature))
 )
 category( ItemCategory.Devilkin,
-  weapon('Dark Glaive', ['Humanoid', '!Divine', '!Creature'], 'strength')
+  weapon('Dark Glaive', 'strength', Tag.Humanoid, ...Excl(Tag.Divine, Tag.Creature))
 )
 category( ItemCategory.Orcish,
-  weapon('Great Maul', ['Humanoid', '!Divine', '!Creature'], 'strength')
+  weapon('Great Maul', 'strength', Tag.Humanoid, ...Excl(Tag.Divine, Tag.Creature))
 )
 category( ItemCategory.Construct,
-  weapon('Flail', ['Construct', 'Humanoid', '!Creature'], 'strength')
+  weapon('Flail', 'strength', Tag.Construct, Tag.Humanoid, ...Excl(Tag.Creature))
 )
 category( ItemCategory.Daemonic,
-  weapon('Acid Spit', ['Daemonic', '!Humanoid'], 'strength')
+  weapon('Acid Spit', 'strength', Tag.Daemon, Tag.Chaotic, ...Excl(Tag.Humanoid))
 )
 category( ItemCategory.Druidic,
-  weapon('Primal Claws', ['Creature', 'Divine', '!Humanoid'], 'dexterity')
+  weapon('Primal Claws', 'dexterity', Tag.Creature, Tag.Divine, ...Excl(Tag.Humanoid))
 )
 category( ItemCategory.Chaotic,
-  weapon('Chaos Fangs', ['Chaotic', 'Creature', '!Humanoid'], 'strength')
+  weapon('Chaos Fangs', 'strength', Tag.Chaotic, Tag.Creature, ...Excl(Tag.Humanoid))
 )
 
 // exportObj : line 20

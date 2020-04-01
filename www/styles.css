@@ -5,10 +5,15 @@
 
 *{
   font-family: sans-serif;
+  box-sizing: border-box;
 }
 
 html{
   background-color: hsl(180, 10%, 30%);
+}
+
+body{
+  margin: 0;
 }
 
 hr{
