@@ -1,6 +1,5 @@
 import nggt from '../nggt.js'
 import Prefabs from '../prefabs/module.js'
-import Data from '../../../data/module.js'
 import CustomHeroPipe from '../pipes/custom-hero.js'
 
 export default () => nggt.create({
