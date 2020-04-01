@@ -69,7 +69,7 @@ export default {
       Druidic creatures are considered a <strong>Creature</strong>. <br> 
       Druidic creatures are considered <strong>Divine</strong> because of their divine creation. 
     `,
-    `Druidic creatues can form herds. Usually these are non-hierarchal and non-species specific. Because of this, usually Druidic herds can bring abundances of nature and growth. Druidic creatures tend are divine by nature and can sense divine beings. They are passive towards non-hostile divine beings.`
+    `Druidic creatues can form herds. Usually these are non-hierarchal and non-species specific. Because of this, usually Druidic herds can bring abundances of nature and growth. Druidic creatures are divine by nature and can sense divine beings. They are passive towards non-hostile divine beings.`
   ),
   Golem: desc(
     `Golems are crafted steampunk guardians of Dwarves.`,

@@ -1,13 +1,10 @@
-import nggt from '../../nggt.js'
 import Glcss from '../glcss/module.js'
 import Layout from '../layout/module.js'
-
 import Data from '../../../data/module.js'
+import CustomHeroPipe from '../../pipes/custom-hero.js'
 
-export default pipe => {
-  console.log(pipe.val())
-  return Glcss.Card(
-    Glcss.CardHeader('Equipment'),
-    Layout.UL('Weapon', 'Armor', 'Mark', 'Prop')
-  )
-}
+const Equipment = CustomHeroPipe.Equipment
+export default pipe => Glcss.Card(
+  Glcss.CardHeader('Equipment'),
+  Layout.UL('Weapon', 'Armor', 'Mark', 'Prop')
+)
