@@ -1,5 +1,5 @@
 import nggt from '../nggt.js'
-import Prefabs from '../prefabs/module.js'
+import Prefabs from '../prefabs/customize.js'
 import CustomHeroPipe from '../pipes/custom-hero.js'
 
 const tab = nggt.dataObj('step1')
@@ -14,7 +14,6 @@ export default () => nggt.create({
           Prefabs.RaceDesc()
         ),
         Prefabs.Container('div', ['right'],
-          Prefabs.Btn(['gl-btn_icon'], 'Log', () => console.log(CustomHeroPipe.val())),
           Prefabs.Btn(['gl-btn_icon'], 'Equip', tab.onevent('step2'))
         )
       )
@@ -27,7 +26,6 @@ export default () => nggt.create({
         ),
         Prefabs.HeroStore(),
         Prefabs.Container('div', ['right'],
-          Prefabs.Btn(['gl-btn_icon'], 'Log', () => console.log(CustomHeroPipe.val())),
           Prefabs.Btn(['gl-btn_icon'], 'Back', tab.onevent('step1')),
           Prefabs.Btn(['gl-btn_icon'], 'Create', () => console.log(CustomHeroPipe.val()))
         )

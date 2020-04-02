@@ -1,5 +1,5 @@
 import nggt from '../../nggt.js'
-import Layout from '../layout/module.js'
+import Layout from '../gl-layout.js'
 import CustomHeroPipe from '../../pipes/custom-hero.js'
 
 const click = (obj, inc) => 

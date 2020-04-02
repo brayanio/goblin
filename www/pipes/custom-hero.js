@@ -1,7 +1,7 @@
 import nggt from '../nggt.js'
 import Data from '../../../data/module.js'
-// pipe
 
+// pipe
 const pipe = {
   Hero: nggt.pipe('name', {'race': Data.Races[0]}),
   Equipment: nggt.pipe(...Data.ItemSlots),
@@ -20,21 +20,6 @@ pipe.val = () => { return {
   equipment: pipe.Equipment.val() //Weapon, Armor, Mark, Prop
 } }
 
-pipe.cleanup = () => {
-  pipe.Hero.clear()
-  pipe = {
-    Hero: nggt.pipe('name', {'race': Data.Races[0]}),
-    Equipment: nggt.pipe(...Data.ItemSlots),
-    Stats: nggt.pipe({
-      total: 12,
-      strength: 0,
-      dexterity: 0,
-      intelligence: 0,
-      charisma: 0
-    })
-  }
-}
-
 // data
 
 const calcTotal = () => {
@@ -47,5 +32,29 @@ let subs = [
   pipe.Stats.intelligence.onChange(() => calcTotal()),
   pipe.Stats.charisma.onChange(() => calcTotal())
 ]
+
+// cleanup
+
+pipe.cleanup = () => {
+  pipe.Hero.clear()
+  subs.forEach(e => e.cleanup())
+  pipe = {
+    Hero: nggt.pipe('name', {'race': Data.Races[0]}),
+    Equipment: nggt.pipe(...Data.ItemSlots),
+    Stats: nggt.pipe({
+      total: 12,
+      strength: 0,
+      dexterity: 0,
+      intelligence: 0,
+      charisma: 0
+    })
+  }
+  subs = [
+    pipe.Stats.strength.onChange(() => calcTotal()),
+    pipe.Stats.dexterity.onChange(() => calcTotal()),
+    pipe.Stats.intelligence.onChange(() => calcTotal()),
+    pipe.Stats.charisma.onChange(() => calcTotal())
+  ]
+}
 
 export default pipe
