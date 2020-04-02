@@ -21,8 +21,8 @@ export default () => nggt.create({
     ),
     Prefabs.Tab('step2',
       Prefabs.Card(
-        Prefabs.ColGrid(4, 6,
-          Prefabs.HeroEquipment(),
+        Prefabs.ColGrid(0, 10,
+          Prefabs.HeroForm() + Prefabs.HeroEquipment(),
           Prefabs.ItemInspect(),
         ),
         Prefabs.HeroStore(),

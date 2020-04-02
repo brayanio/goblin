@@ -18,6 +18,7 @@ export default obj => {
   }
 
   const onevent = e => () => change(e)
+  const useevent = () => e => change(e)
 
-  return {change, onChange, update, val, clear, cleanup, onevent}
+  return {change, onChange, update, val, clear, cleanup, onevent, useevent}
 }

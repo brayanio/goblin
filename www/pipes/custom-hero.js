@@ -21,7 +21,7 @@ pipe.val = () => { return {
 } }
 
 pipe.cleanup = () => {
-  pipe.Hero.cle
+  pipe.Hero.clear()
   pipe = {
     Hero: nggt.pipe('name', {'race': Data.Races[0]}),
     Equipment: nggt.pipe(...Data.ItemSlots),

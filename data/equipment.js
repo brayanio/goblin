@@ -17,8 +17,7 @@ let Items = {},
   ItemsByTag = {},
   ItemsBySlot = {},
   ItemsBySlotByCategory = {},
-  ItemsBySlotByTag = {},
-  ItemsBySlotByCategoryByTag = {}
+  ItemsBySlotByTag = {}
 
 const checkExcluded = (item, tags) => tags.find(t => item.type.excludedTags[t]) === undefined
 const filterExcluded = (items, tags) => items.filter(i => checkExcluded(i, tags))
@@ -32,12 +31,8 @@ const filterResults = (obj, tags) => {
   return res
 }
 
-const getItemsBySlotByTags = (slot, tags) => tags.map(tag => {
-  if(!ItemsBySlotByTag[slot] || !ItemsBySlotByTag[slot][tag]) return null
-  return filterExcluded(ItemsBySlotByTag[slot][tag], tags)
-}).filter(e=>e!==null)
-
-const getItemsByCategoryFromSlotAndTags = (slot, tags) => {
+const getItemsBySlotByTags = (slot, tags) => {
+  if(!ItemsBySlotByCategory[slot]) return null
   return filterResults(ItemsBySlotByCategory[slot], tags)
 }
 
@@ -55,8 +50,7 @@ exportObj = {
   ItemsBySlotByCategory, // ItemsBySlotByCategory.Weapon.Elven
   ItemsBySlotByTag, // ItemsBySlotByTag.Weapon.Humanoid
 
-  getItemsBySlotByTags,
-  getItemsByCategoryFromSlotAndTags
+  getItemsBySlotByTags
 }
 
 const registerItem = obj => {
@@ -127,33 +121,41 @@ const prop = (name, tags) => {
 const category = (category, ...items) => 
   items.map(i => item(i.name, type(i.slot, category, i.tags), i.combat, i.defense))
 
-const Tag = races.RaceTag
-const Excl = (...a) => a.map(s => '!' + s)
+const Tag = races.RaceTag //['Humanoid', 'Divine', 'Evil', 'Devilkin', 'Construct', 'Creature', 'Daemon', 'Chaotic']
+const Exclude = (...a) => a.map(s => '!' + s)
 // content
-category( ItemCategory.Elven, 
-  weapon('Dual Blades', 'dexterity', Tag.Humanoid, ...Excl(Tag.Devilkin, Tag.Creature)),
-  weapon('Temptress', 'charisma', Tag.Humanoid, ...Excl(Tag.Divine))
+category( ItemCategory.Elven,
+  weapon('Dual Blades', 'dexterity', Tag.Humanoid, ...Exclude(Tag.Devilkin, Tag.Creature, Tag.Construct)),
+  weapon('Temptress', 'charisma', Tag.Humanoid, ...Exclude(Tag.Divine, Tag.Creature, Tag.Construct))
 )
 category( ItemCategory.Dwarven,
-  weapon('Crossbow', 'dexterity', Tag.Humanoid, ...Excl(Tag.Devilkin, Tag.Creature))
+  weapon('Thunder Sniper', 'charisma', Tag.Divine, ...Exclude(Tag.Devilkin, Tag.Creature, Tag.Evil)),
+  weapon('Rune Staff', 'intelligence', Tag.Humanoid, ...Exclude(Tag.Creature))
 )
 category( ItemCategory.Devilkin,
-  weapon('Dark Glaive', 'strength', Tag.Humanoid, ...Excl(Tag.Divine, Tag.Creature))
+  weapon('Dark Glaive', 'strength', Tag.Humanoid, ...Exclude(Tag.Divine, Tag.Creature)),
+  weapon('Orb of Hate', 'charisma', Tag.Devilkin, Tag.Evil, ...Exclude(Tag.Divine, Tag.Creature, Tag.Construct))
 )
 category( ItemCategory.Orcish,
-  weapon('Great Maul', 'strength', Tag.Humanoid, ...Excl(Tag.Divine, Tag.Creature))
+  weapon('Chainblade Maul', 'strength', Tag.Humanoid, Tag.Construct, ...Exclude(Tag.Divine, Tag.Creature)),
+  weapon('Hand Cannon', 'dexterity', Tag.Humanoid, Tag.Construct, ...Exclude(Tag.Creature))
 )
 category( ItemCategory.Construct,
-  weapon('Flail', 'strength', Tag.Construct, Tag.Humanoid, ...Excl(Tag.Creature))
+  weapon('Flamebreath', 'charisma', Tag.Construct, Tag.Daemon, ...Exclude(Tag.Humanoid)),
+  weapon('Chainblade', 'strength', Tag.Construct, Tag.Humanoid, ...Exclude(Tag.Creature))
 )
 category( ItemCategory.Daemonic,
-  weapon('Acid Spit', 'strength', Tag.Daemon, Tag.Chaotic, ...Excl(Tag.Humanoid))
+  weapon('Gore Spikes', 'strength', Tag.Daemon, Tag.Construct, ...Exclude(Tag.Humanoid, Tag.Divine)),
+  weapon('Acid Spit', 'strength', Tag.Daemon, Tag.Chaotic, ...Exclude(Tag.Humanoid, Tag.Construct))
 )
 category( ItemCategory.Druidic,
-  weapon('Primal Claws', 'dexterity', Tag.Creature, Tag.Divine, ...Excl(Tag.Humanoid))
+  weapon('Feral Claws', 'dexterity', Tag.Creature, ...Exclude(Tag.Humanoid, Tag.Construct)),
+  weapon('Unicorn', 'dexterity', Tag.Divine, ...Exclude(Tag.Humanoid, Tag.Daemon, Tag.Chaotic, Tag.Evil, Tag.Devilkin, Tag.Construct)),
+  weapon('Pentacorn', 'charisma', Tag.Devilkin, Tag.Daemon, ...Exclude(Tag.Divine, Tag.Chaotic, Tag.Construct))
 )
 category( ItemCategory.Chaotic,
-  weapon('Chaos Fangs', 'strength', Tag.Chaotic, Tag.Creature, ...Excl(Tag.Humanoid))
+  weapon('Chaos Fangs', 'strength', Tag.Chaotic, Tag.Creature, ...Exclude(Tag.Humanoid, Tag.Construct)),
+  weapon('Scorpion Tail', 'dexterity', Tag.Chaotic, Tag.Creature, ...Exclude(Tag.Humanoid, Tag.Construct))
 )
 
 // exportObj : line 20

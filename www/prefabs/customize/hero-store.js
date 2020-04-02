@@ -10,9 +10,9 @@ const ExamplePanel = (header, ...ar) => Glcss.Card(
 )
 
 const StorePanel = (slot, tags) => {
-  let items = Data.getItemsByCategoryFromSlotAndTags(slot, tags)
+  let items = Data.getItemsBySlotByTags(slot, tags)
   if(items)
-    return Object.keys(items).map(category => ExamplePanel(category, ...items[category]))
+    return Layout.Join(...Object.keys(items).map(category => ExamplePanel(category, ...items[category])))
   return ''
 }
 

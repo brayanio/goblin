@@ -4,6 +4,16 @@
   padding: 6px;
 }
 
+.race-desc i {
+  padding-bottom: 6px;
+  display: block;
+}
+
+.race-desc hr{
+  border: 1px solid var(--aw5);
+  margin: 8px 30%;
+}
+
 @media screen and (max-width: 800px){
   .race-desc{
     height: 200px;
