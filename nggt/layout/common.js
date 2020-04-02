@@ -1,4 +1,4 @@
-import nggt from '../../nggt.js'
+import nggt from '../nggt.js'
 import core from './core.js'
 
 const

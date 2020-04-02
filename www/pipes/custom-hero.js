@@ -1,4 +1,4 @@
-import nggt from '../nggt.js'
+import nggt from '../../../nggt/nggt.js'
 import Data from '../../../data/module.js'
 
 // pipe

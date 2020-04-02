@@ -1,10 +1,11 @@
-import Layout from '../gl-layout.js'
 import Data from '../../../data/module.js'
 import CHPipe from '../../pipes/custom-hero.js'
 
+import Layout from '../gl-layout.js'
+
 export default () => Layout.DataObj(CHPipe.Hero.race, race => 
-  Layout.Card(
-    Layout.CardHeader(race.name),
+  Layout.Panel(
+    Layout.PanelHeader(race.name + ' Description'),
     Layout.Container('div', ['race-desc'], 
       Data.RaceDescriptions[race.name]
     )

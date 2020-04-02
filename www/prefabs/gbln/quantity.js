@@ -1,6 +1,8 @@
-import nggt from '../../nggt.js'
-import Layout from '../gl-layout.js'
+import nggt from '../../../nggt/nggt.js'
+import Data from '../../../data/module.js'
 import CustomHeroPipe from '../../pipes/custom-hero.js'
+
+import Layout from '../gl-layout.js'
 
 const click = (obj, inc) => 
   (inc === 1 && CustomHeroPipe.Stats.total.val() > 0) || (inc === -1 && obj.val() > 0)

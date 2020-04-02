@@ -1,4 +1,4 @@
-import nggt from '../../nggt.js'
+import nggt from '../nggt.js'
 import Layout from '../layout/module.js'
 
 export default (label, options, dataObj, onchange) => {

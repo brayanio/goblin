@@ -1,7 +1,8 @@
-import nggt from '../../nggt.js'
-import Layout from '../gl-layout.js'
+import nggt from '../../../nggt/nggt.js'
 import Data from '../../../data/module.js'
 import CHPipe from '../../pipes/custom-hero.js'
+
+import Layout from '../gl-layout.js'
 
 const ExamplePanel = (header, ...ar) => Layout.Card(
   Layout.CardHeader(header),

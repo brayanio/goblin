@@ -2,6 +2,7 @@
 
 .race-desc{
   padding: 6px;
+  color: var(--aw15);
 }
 
 .race-desc i {

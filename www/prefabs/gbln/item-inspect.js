@@ -1,5 +1,6 @@
-import Layout from '../gl-layout.js'
 import Data from '../../../data/module.js'
+
+import Layout from '../gl-layout.js'
 
 export default item => Layout.Card(
   Layout.CardHeader(item.name),

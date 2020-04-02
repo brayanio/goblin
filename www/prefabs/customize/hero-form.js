@@ -1,6 +1,7 @@
-import Layout from '../gl-layout.js'
 import Data from '../../../data/module.js'
 import CustomHeroPipe from '../../pipes/custom-hero.js'
+
+import Layout from '../gl-layout.js'
 
 const Hero = CustomHeroPipe.Hero
 export default () => Layout.Card( //name, race, fn

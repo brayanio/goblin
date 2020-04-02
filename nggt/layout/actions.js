@@ -1,4 +1,4 @@
-import nggt from '../../nggt.js'
+import nggt from '../nggt.js'
 const
 
 Auto = (template, auto) => nggt.create({template, auto}),

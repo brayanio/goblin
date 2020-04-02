@@ -1,4 +1,4 @@
-import nggt from './nggt.js'
+import nggt from '../nggt/nggt.js'
 import Customize from './scenes/customize.js'
 
 nggt.router({

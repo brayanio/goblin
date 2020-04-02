@@ -1,7 +1,8 @@
-import Gbln from '../gbln/module.js'
-import Layout from '../gl-layout.js'
-import CustomHeroPipe from '../../pipes/custom-hero.js'
 import Data from '../../../data/module.js'
+import CustomHeroPipe from '../../pipes/custom-hero.js'
+
+import Layout from '../gl-layout.js'
+import Gbln from '../gbln/module.js'
 
 const Stats = CustomHeroPipe.Stats
 export default () => Layout.Card( // total, strength, dexterity, intelligence, charisma
