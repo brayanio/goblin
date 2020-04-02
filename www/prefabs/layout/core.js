@@ -21,9 +21,10 @@ Id = (el, id, classList, ...args) => Join(
 ),
 
 If = (condition, el) => {
-  if(typeof condition === 'function')
-   return condition() ? el : ''
-  return condition ? el : ''
+  const efn = typeof el === 'function' ? el : () => el
+  if(typeof condition === 'function' ? condition() : condition)
+    return efn()
+  return ''
 },
 
 Map = (ar, fn) => ar.map((e, i) => fn(e, i)).join('')

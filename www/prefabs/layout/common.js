@@ -43,6 +43,8 @@ Tabs = (dataObj, ...tabs) => {
     }),
     cleanup: () => sub.cleanup()
   })
-}
+},
 
-export default { Bold, Col, ColGrid, DataObj, List, Tab, Tabs }
+cap = s => s.substr(0, 1).toUpperCase() + s.substr(1)
+
+export default { Bold, Col, ColGrid, DataObj, List, Tab, Tabs, cap }

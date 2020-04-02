@@ -15,19 +15,21 @@ const StorePanel = (slot, tags) => {
   return ''
 }
 
-const tabs = nggt.dataObj(Data.ItemSlots[0])
-export default () => Layout.Panel(
-  Layout.PanelHeader(
-    Layout.Container('div', ['space-between'],
-      'Store',
-      Layout.FormSelect(null, Data.ItemSlots, tabs)
-    )
-  ),
-  Layout.Tabs(tabs, Layout.Map(Data.ItemSlots, slot => 
-    Layout.Tab(slot,
-      Layout.DataObj(CHPipe.Hero.race, race => 
-        StorePanel(slot, race.tags)
+export default () => {
+  const tabs = nggt.dataObj(Data.ItemSlots[0])
+  return Layout.Panel(
+    Layout.PanelHeader(
+      Layout.Container('div', ['space-between'],
+        'Store',
+        Layout.FormSelect(null, Data.ItemSlots, tabs)
       )
-    )
-  ))
-)
+    ),
+    Layout.Tabs(tabs, Layout.Map(Data.ItemSlots, slot => 
+      Layout.Tab(slot,
+        Layout.DataObj(CHPipe.Hero.race, race => 
+          StorePanel(slot, race.tags)
+        )
+      )
+    ))
+  )
+}

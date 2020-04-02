@@ -22,7 +22,9 @@ export default () => nggt.create({
       Prefabs.Card(
         Prefabs.ColGrid(0, 10,
           Prefabs.HeroForm() + Prefabs.HeroEquipment(),
-          Prefabs.ItemInspect(),
+          Prefabs.DataObj(CustomHeroPipe.selectedItem, i => 
+            i && Prefabs.ItemInspect(i)
+          )
         ),
         Prefabs.HeroStore(),
         Prefabs.Container('div', ['right'],

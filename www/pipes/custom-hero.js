@@ -11,7 +11,8 @@ const pipe = {
     dexterity: 0,
     intelligence: 0,
     charisma: 0
-  })
+  }),
+  selectedItem: nggt.dataObj(null)
 }
 
 pipe.val = () => { return {
@@ -30,7 +31,9 @@ let subs = [
   pipe.Stats.strength.onChange(() => calcTotal()),
   pipe.Stats.dexterity.onChange(() => calcTotal()),
   pipe.Stats.intelligence.onChange(() => calcTotal()),
-  pipe.Stats.charisma.onChange(() => calcTotal())
+  pipe.Stats.charisma.onChange(() => calcTotal()),
+
+  ...Data.ItemSlots.map(slot => pipe.Equipment[slot].onChange(i => pipe.selectedItem.change(i)))
 ]
 
 // cleanup
