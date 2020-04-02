@@ -1,1 +1,0 @@
-export default str => `<i class="material-icons">${str}</i>`

@@ -1,1 +1,0 @@
-export default (condition, el) => condition() ? el : ''
