@@ -11,7 +11,7 @@ export default () => {
       Prefabs.Tab('step1',
         Prefabs.Card(
           Prefabs.ColGrid(0, 10,
-            Prefabs.HeroForm() + Prefabs.HeroStats(),
+            Prefabs.HeroForm('Create Character') + Prefabs.HeroStats(),
             Prefabs.RaceDesc()
           ),
           Prefabs.Container('div', ['right'],
@@ -21,8 +21,9 @@ export default () => {
       ),
       Prefabs.Tab('step2',
         Prefabs.Card(
-          Prefabs.ColGrid(0, 10,
-            Prefabs.HeroForm() + Prefabs.HeroEquipment(),
+          Prefabs.ColGrid(0, 10, 10,
+            Prefabs.HeroForm('Character Sheet') + Prefabs.HeroStats(),
+            Prefabs.HeroRace() + Prefabs.HeroEquipment(),
             Prefabs.DataObj(CustomHeroPipe.selectedItem, i => 
               i && Prefabs.ItemInspect(i)
             )

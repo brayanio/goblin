@@ -7,6 +7,6 @@ const Equipment = CustomHeroPipe.Equipment
 export default () => Layout.Card(
   Layout.CardHeader('Equipment'),
   Layout.List('ul', ...Data.ItemSlots.map(slot =>
-    Layout.DataObj(Equipment[slot], i => `${slot}: ${i ? i.name : ''}`)
+    Layout.DataObj(Equipment[slot], i => `${slot}: ${i ? Layout.Bold(i.name) : ''}`)
   ))
 )

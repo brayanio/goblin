@@ -97,8 +97,8 @@ const type = (slot, category, tags) => {
   }
 }
 
-const combat = (damageStat) => {
-  return { combat: {damageStat} }
+const combat = (damageStat, damage, attacks) => {
+  return { combat: {damageStat, damage, attacks} }
 }
 
 const defense = (ac) => {
@@ -106,8 +106,8 @@ const defense = (ac) => {
 }
 
 // content utils
-const weapon = (name, damageStat, ...tags) => {
-  return { slot: ItemSlot.Weapon, name, tags, ...combat(damageStat) }
+const weapon = (name, damageStat, damage, attacks, ...tags) => {
+  return { slot: ItemSlot.Weapon, name, tags, ...combat(damageStat, damage, attacks) }
 }
 const armor = (name, tags, ac) => {
   return { slot: ItemSlot.Armor, name, tags, ...defense(ac) }
@@ -125,37 +125,37 @@ const Tag = races.RaceTag //['Humanoid', 'Divine', 'Evil', 'Devilkin', 'Construc
 const Exclude = (...a) => a.map(s => '!' + s)
 // content
 category( ItemCategory.Elven,
-  weapon('Dual Blades', 'dexterity', Tag.Humanoid, ...Exclude(Tag.Devilkin, Tag.Creature, Tag.Construct)),
-  weapon('Temptress', 'charisma', Tag.Humanoid, ...Exclude(Tag.Divine, Tag.Creature, Tag.Construct))
+  weapon('Dual Blades', 'dexterity', 6, 2, Tag.Humanoid, ...Exclude(Tag.Devilkin, Tag.Creature, Tag.Construct)),
+  weapon('Temptress', 'charisma', 8, 1, Tag.Humanoid, ...Exclude(Tag.Divine, Tag.Creature, Tag.Construct))
 )
 category( ItemCategory.Dwarven,
-  weapon('Thunder Sniper', 'charisma', Tag.Divine, ...Exclude(Tag.Devilkin, Tag.Creature, Tag.Evil)),
-  weapon('Rune Staff', 'intelligence', Tag.Humanoid, ...Exclude(Tag.Creature))
+  weapon('Thunder Sniper', 'charisma', 12, 1, Tag.Divine, ...Exclude(Tag.Devilkin, Tag.Creature, Tag.Evil)),
+  weapon('Rune Staff', 'intelligence', 6, 1, Tag.Humanoid, ...Exclude(Tag.Creature))
 )
 category( ItemCategory.Devilkin,
-  weapon('Dark Glaive', 'strength', Tag.Humanoid, ...Exclude(Tag.Divine, Tag.Creature)),
-  weapon('Orb of Hate', 'charisma', Tag.Devilkin, Tag.Evil, ...Exclude(Tag.Divine, Tag.Creature, Tag.Construct))
+  weapon('Dark Glaive', 'strength', 10, 1, Tag.Humanoid, ...Exclude(Tag.Divine, Tag.Creature)),
+  weapon('Orb of Hate', 'charisma', 6, 1, Tag.Devilkin, Tag.Evil, ...Exclude(Tag.Divine, Tag.Creature, Tag.Construct))
 )
 category( ItemCategory.Orcish,
-  weapon('Chainblade Maul', 'strength', Tag.Humanoid, Tag.Construct, ...Exclude(Tag.Divine, Tag.Creature)),
-  weapon('Hand Cannon', 'dexterity', Tag.Humanoid, Tag.Construct, ...Exclude(Tag.Creature))
+  weapon('Chainblade Maul', 'strength', 6, 2, Tag.Humanoid, Tag.Construct, ...Exclude(Tag.Divine, Tag.Creature)),
+  weapon('Hand Cannon', 'dexterity', 10, 1, Tag.Humanoid, Tag.Construct, ...Exclude(Tag.Creature))
 )
 category( ItemCategory.Construct,
-  weapon('Flamebreath', 'charisma', Tag.Construct, Tag.Daemon, ...Exclude(Tag.Humanoid)),
-  weapon('Chainblade', 'strength', Tag.Construct, Tag.Humanoid, ...Exclude(Tag.Creature))
+  weapon('Flamebreath', 'charisma', 4, 4, Tag.Construct, Tag.Daemon, ...Exclude(Tag.Humanoid)),
+  weapon('Chainblade', 'strength', 4, 3, Tag.Construct, Tag.Humanoid, ...Exclude(Tag.Creature))
 )
 category( ItemCategory.Daemonic,
-  weapon('Gore Spikes', 'strength', Tag.Daemon, Tag.Construct, ...Exclude(Tag.Humanoid, Tag.Divine)),
-  weapon('Acid Spit', 'strength', Tag.Daemon, Tag.Chaotic, ...Exclude(Tag.Humanoid, Tag.Construct))
+  weapon('Gore Spikes', 'strength', 4, 2, Tag.Daemon, Tag.Construct, ...Exclude(Tag.Humanoid, Tag.Divine)),
+  weapon('Acid Spit', 'strength', 10, 1, Tag.Daemon, Tag.Chaotic, ...Exclude(Tag.Humanoid, Tag.Construct))
 )
 category( ItemCategory.Druidic,
-  weapon('Feral Claws', 'dexterity', Tag.Creature, ...Exclude(Tag.Humanoid, Tag.Construct)),
-  weapon('Unicorn', 'dexterity', Tag.Divine, ...Exclude(Tag.Humanoid, Tag.Daemon, Tag.Chaotic, Tag.Evil, Tag.Devilkin, Tag.Construct)),
-  weapon('Pentacorn', 'charisma', Tag.Devilkin, Tag.Daemon, ...Exclude(Tag.Divine, Tag.Chaotic, Tag.Construct))
+  weapon('Feral Claws', 'dexterity', 4, 2, Tag.Creature, ...Exclude(Tag.Humanoid, Tag.Construct)),
+  weapon('Unicorn', 'dexterity', 6, 1, Tag.Divine, ...Exclude(Tag.Humanoid, Tag.Daemon, Tag.Chaotic, Tag.Evil, Tag.Devilkin, Tag.Construct)),
+  weapon('Pentacorn', 'charisma', 6, 1, Tag.Devilkin, Tag.Daemon, ...Exclude(Tag.Divine, Tag.Chaotic, Tag.Construct))
 )
 category( ItemCategory.Chaotic,
-  weapon('Chaos Fangs', 'strength', Tag.Chaotic, Tag.Creature, ...Exclude(Tag.Humanoid, Tag.Construct)),
-  weapon('Scorpion Tail', 'dexterity', Tag.Chaotic, Tag.Creature, ...Exclude(Tag.Humanoid, Tag.Construct))
+  weapon('Chaos Fangs', 'strength', 6, 2, Tag.Chaotic, Tag.Creature, ...Exclude(Tag.Humanoid, Tag.Construct)),
+  weapon('Scorpion Tail', 'dexterity', 8, 1, Tag.Chaotic, Tag.Creature, ...Exclude(Tag.Humanoid, Tag.Construct))
 )
 
 // exportObj : line 20

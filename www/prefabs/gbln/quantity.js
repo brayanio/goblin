@@ -15,7 +15,9 @@ export default (label) => {
     Layout.DataObj(obj, val => 
       Layout.Bold(val)
     ),
-    Layout.Btn(['gl-btn_icon'], '+', () => click(obj, 1)),
-    Layout.Btn(['gl-btn_icon'], '-', () => click(obj, -1))
+    Layout.Container('div', ['right'], 
+      Layout.Btn(['gl-btn_icon'], '+', () => click(obj, 1)),
+      Layout.Btn(['gl-btn_icon'], '-', () => click(obj, -1))
+    )
   )
 }

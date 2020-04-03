@@ -21,7 +21,7 @@ export default () => {
   return Layout.Panel(
     Layout.PanelHeader(
       Layout.Container('div', ['space-between'],
-        'Store',
+        'Outfit',
         Layout.FormSelect(null, Data.ItemSlots, tabs)
       )
     ),

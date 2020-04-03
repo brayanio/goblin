@@ -4,8 +4,8 @@ import CustomHeroPipe from '../../pipes/custom-hero.js'
 import Layout from '../gl-layout.js'
 
 const Hero = CustomHeroPipe.Hero
-export default () => Layout.Card( //name, race, fn
-  Layout.CardHeader('Create Character'),
+export default title => Layout.Card( //name, race, fn
+  Layout.CardHeader(title),
   Layout.Container('form', ['gl-card'],
     Layout.FormInput('Name', {}, Hero.name),
     Layout.FormSelect('Race', Data.RaceNames, Hero.race, r => Data.Race[r])
