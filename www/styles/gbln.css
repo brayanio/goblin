@@ -1,6 +1,6 @@
-/* quantity */
+/* key value */
 
-.gbln-quantity {
+.gbln-keyvalue {
   margin: 6px 0;
   display: flex;
   align-content: center;
@@ -8,10 +8,12 @@
   vertical-align: middle;
 }
 
-.gbln-quantity span{
+.gbln-keyvalue > span {
   display: inline-block;
   min-width: 100px;
 }
-.gbln-quantity strong{
+
+.gbln-keyvalue > div {
+  font-weight: bold;
   padding: 0 6px;
 }

@@ -20,3 +20,11 @@ hr{
   border: 2px solid #ffffff40;
   border-radius: 6px;
 }
+
+ul{
+  /* margin: 6px;
+  padding-left: 24px; */
+
+  margin: 6px 0;
+  padding-left: 118px;
+}
