@@ -1,3 +1,4 @@
+import Align from './align.js'
 import AutoBtn from './auto-btn.js'
 import Card from './card.js'
 import CardHeader from './card-header.js'
@@ -7,6 +8,7 @@ import Panel from './panel.js'
 import PanelHeader from './panel-header.js'
 
 export default {
+  Align,
   AutoBtn,
   Card,
   CardHeader,

@@ -1,9 +1,9 @@
 import ItemInspect from './item-inspect.js'
-import Quantity from './quantity.js'
 import KeyValue from './key-value.js'
+import Logo from './logo.js'
 
 export default {
   ItemInspect,
-  Quantity,
-  KeyValue
+  KeyValue,
+  Logo
 }

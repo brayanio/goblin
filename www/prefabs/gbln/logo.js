@@ -1,0 +1,1 @@
+export default '<img class="logo" src="./assets/logo.PNG">'

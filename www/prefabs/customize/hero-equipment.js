@@ -9,8 +9,12 @@ export default () => Layout.Card(
   Layout.CardHeader('Equipment'),
   Layout.Container('div', ['pad_thick'],
     ...Data.ItemSlots.map(slot =>
-      Layout.DataObj(Equipment[slot], i => 
-        Gbln.KeyValue(slot, i ? Layout.Bold(i.name) : '')
+      Layout.DataObj(Equipment[slot], i =>
+        Gbln.KeyValue(slot, i ? 
+          Layout.Container('div', ['right'], 
+            Layout.BtnAuto(['gl-btn_icon'], i.name, () => CustomHeroPipe.selectedItem.change(i))     
+          ) : ''
+        )
       )
     )
   )

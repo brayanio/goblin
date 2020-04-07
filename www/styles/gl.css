@@ -43,7 +43,7 @@
     max-height: 95%;
   }
   .gl-scene_mobile_pro{
-    padding: 2.5% 10%;
+    padding: 2.5% 5%;
     overflow-y: auto;
     max-height: 95%;
   }
@@ -63,6 +63,11 @@
 }
 
 /* Utils */
+
+.align{
+  display: flex;
+  align-items: center;
+}
 
 .right{
   width: 100%;
