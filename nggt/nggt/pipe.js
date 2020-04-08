@@ -18,19 +18,12 @@ export default (...ar) => {
     }
   })
 
-  const val = () => {
-    let o = {}
-    Object.keys(obj).forEach(key => {
-      if(typeof obj[key] === 'object')
-        o[key] = obj[key].val()
-    })
-    return o
-  }
+  
   const fnObj = dataObj({})
-  const fn = (name, f) => fnObj.change(o => o[name] = f)
+  const add = (name, f) => fnObj.change(o => o[name] = f)
 
-  let pipeRef = {val, fn, ...obj}
-  pipeRef.sub = fnObj.onChange(o => {
+  let pipeRef = {add, ...obj}
+  fnObj.onChange(o => {
     //clean
     fns.forEach(fn => delete pipeRef[fn])
     fns = []
@@ -40,6 +33,23 @@ export default (...ar) => {
       fns.push(key)
     })
   })
+
+  add('val', () => {
+    let o = {}
+    Object.keys(obj).forEach(key => {
+      if(typeof obj[key] === 'object')
+        o[key] = obj[key].val()
+    })
+    return o
+  })
+
+  add('cleanup', () => 
+    Object.keys(pipeRef).forEach(key => {
+      if(typeof pipeRef[key] === 'object')
+        if(pipeRef[key].clear && pipeRef[key].cleanup)
+          pipeRef[key].clear()
+    })
+  )
 
   return pipeRef
 }

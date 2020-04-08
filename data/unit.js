@@ -37,6 +37,7 @@ const base = (unit, stats) => {
   let will = Will(stats)
   let athletics = Athletics(stats)
   let crit = 8 + stats.dexterity + power
+  let critDamage = 200
 
   return { hp, mana, ac, power, crit, weaponpower, will, athletics }
 }
@@ -44,15 +45,17 @@ const base = (unit, stats) => {
 const GameUnit = class {
   constructor(unit){
     this.unit = JSON.parse(JSON.stringify(unit))
-    this.name = this.unit.name
     this.stats = this.unit.stats
-    this.refresh()
-    this.current = base(this.unit, this.stats)
-    delete this.unit.name
+    this.combat = this.base()
+    this.effects = []
   }
 
   refresh(){
-    this.base = base(this.unit, this.stats)
+    this.combat = base(this.unit, this.stats)
+  }
+
+  base(){
+    return base(this.unit, this.unit.stats)
   }
   
 }

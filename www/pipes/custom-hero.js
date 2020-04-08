@@ -1,17 +1,19 @@
 import nggt from '../../../nggt/nggt.js'
 import Data from '../../../data/module.js'
 
+const Stats = () => {return {
+  total: 6,
+  strength: 0,
+  dexterity: 0,
+  intelligence: 0,
+  charisma: 0
+}}
+
 // pipe
 const pipe = {
   Hero: nggt.pipe('name', {'race': Data.Races[0]}),
   Equipment: nggt.pipe(...Data.ItemSlots),
-  Stats: nggt.pipe({
-    total: 6,
-    strength: 0,
-    dexterity: 0,
-    intelligence: 0,
-    charisma: 0
-  }),
+  Stats: nggt.pipe(Stats()),
   selectedItem: nggt.dataObj(null)
 }
 
@@ -64,25 +66,10 @@ let subs = [
 // cleanup
 
 pipe.cleanup = () => {
-  pipe.Hero.clear()
-  subs.forEach(e => e.cleanup())
-  pipe = {
-    Hero: nggt.pipe('name', {'race': Data.Races[0]}),
-    Equipment: nggt.pipe(...Data.ItemSlots),
-    Stats: nggt.pipe({
-      total: 6,
-      strength: 0,
-      dexterity: 0,
-      intelligence: 0,
-      charisma: 0
-    })
-  }
-  subs = [
-    pipe.Stats.strength.onChange(() => calcTotal()),
-    pipe.Stats.dexterity.onChange(() => calcTotal()),
-    pipe.Stats.intelligence.onChange(() => calcTotal()),
-    pipe.Stats.charisma.onChange(() => calcTotal())
-  ]
+  pipe.Hero.cleanup()
+  pipe.Equipment.cleanup()
+  pipe.Stats.cleanup()
+  pipe.selectedItem.clear()
 }
 
 export default pipe

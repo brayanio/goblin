@@ -8,33 +8,18 @@ export default () => {
   return nggt.create({
     isRoot: true,
     classList: ['customize', 'gl-scene_mobile_pro'],
-    template: Prefabs.Tabs(tab,
-      Prefabs.Tab('step1',
-        Prefabs.Card(
-          Prefabs.ColGrid(0, 10,
-            Prefabs.HeroForm('Create Character') + Prefabs.HeroStats(),
-            Prefabs.RaceDesc()
-          ),
-          Prefabs.Container('div', ['right'],
-            Prefabs.Btn(['gl-btn_icon'], 'Equip', tab.onevent('step2'))
-          )
+    template: Prefabs.Card(
+      Prefabs.ColGrid(0, 10, 10,
+        Prefabs.HeroForm('Character Sheet') + Prefabs.HeroStats(),
+        Prefabs.HeroRace() + Prefabs.HeroEquipment(),
+        Prefabs.DataObj(CustomHeroPipe.selectedItem, i => 
+          i && Prefabs.ItemInspect(i)
         )
       ),
-      Prefabs.Tab('step2',
-        Prefabs.Card(
-          Prefabs.ColGrid(0, 10, 10,
-            Prefabs.HeroForm('Character Sheet') + Prefabs.HeroStats(),
-            Prefabs.HeroRace() + Prefabs.HeroEquipment(),
-            Prefabs.DataObj(CustomHeroPipe.selectedItem, i => 
-              i && Prefabs.ItemInspect(i)
-            )
-          ),
-          Prefabs.HeroStore(),
-          Prefabs.Container('div', ['right'],
-            Prefabs.Btn(['gl-btn_icon'], 'Back', tab.onevent('step1')),
-            Prefabs.Btn(['gl-btn_icon'], 'Create', () => console.log(CustomHeroPipe.unit(), new Data.GameUnit(CustomHeroPipe.unit())))
-          )
-        )
+      Prefabs.HeroStore(),
+      Prefabs.Container('div', ['right'],
+        Prefabs.Btn(['gl-btn_icon'], 'Back', tab.onevent('step1')),
+        Prefabs.Btn(['gl-btn_icon'], 'Create', () => console.log(CustomHeroPipe.unit(), new Data.GameUnit(CustomHeroPipe.unit())))
       )
     ),
     cleanup: () => CustomHeroPipe.cleanup()
