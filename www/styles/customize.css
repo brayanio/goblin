@@ -1,3 +1,44 @@
+.character-sheet .gl-card{
+  background-color: transparent;
+  box-shadow: none;
+}
+
+@media screen and (max-width: 800px){
+  .character-sheet .drow > div{
+    box-shadow: inset 0 0 6px var(--ab5);
+  }
+
+  .character-sheet .drow > div:nth-child(1){
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+
+  .character-sheet .drow > div:nth-child(2){
+    margin: -6px 0;
+  }
+
+  .character-sheet .drow > div:nth-child(3){
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+}
+
+@media screen and (min-width: 800px){
+  .character-sheet .drow > div{
+    box-shadow: inset 0 0 6px var(--ab5);
+  }
+
+  .character-sheet .drow > div:nth-child(1){
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+
+  .character-sheet .drow > div:nth-child(3){
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+}
+
 /* race-desc */
 
 .race-desc{
